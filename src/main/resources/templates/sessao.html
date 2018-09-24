@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+>
+<head>
+    <title>Sessões</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link href="/webjars/materialize/1.0.0-beta/dist/css/materialize.css" type="text/css" rel="stylesheet"
+          media="screen,projection"/>
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
+</head>
+<body>
+<header class="red z-depth-3">
+    <div class="row">
+        <h2 class="center"><i class="material-icons medium">content_paste</i>Sessões</h2>
+    </div>
+</header>
+
+
+
+<div class="container z-depth-2">
+    <h2 class="center">Buscar Sessões Por:</h2>
+    <div class="row">
+        <div class="col s12">
+            <div class="row">
+                <div class="input-field col s4">
+                    <form class="col s12" id="formDados" action="#" th:action="@{/sessao/periodo}" method="GET">
+                        <input placeholder="Placeholder" name="dataInicio" id="dataInicio" type="date" class="validate"/>
+                        <label for="DataInicio">Data</label>
+                        <input placeholder="Placeholder" name="dataFim" id="dataFim" type="date" class="validate"/>
+                        <label for="DataFim">Data</label>
+                        <button type="submit" class="waves-effect waves-light btn">Buscar por Data</button>
+                    </form>
+                </div>
+                <div class="input-field col s4">
+                    <form class="col s12" id="formDados" action="#" th:action="@{/sessao/periodo}" method="GET">
+                        <input placeholder="Placeholder" id="cidade" type="text" class="validate"/>
+                        <label for="first_name">Cidade</label>
+                        <button type="submit" class="waves-effect waves-light btn">Buscar por Cidade</button>
+                    </form>
+                </div>
+                <div class="input-field col s4">
+                    <form class="col s12" id="formDados" action="#" th:action="@{/sessao/periodo}" method="GET">
+                        <input placeholder="Placeholder" id="filme" type="text" class="validate"/>
+                        <label for="first_name">Filme</label>
+                        <button type="submit" class="waves-effect waves-light btn">Buscar por Filme</button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12">
+
+            <table class="stripped">
+                <thead>
+                <tr>
+                    <th>Filme</th>
+                    <th>Sala</th>
+                    <th>Data Inicio</th>
+                    <th>Data Final</th>
+                    <th>Horário</th>
+                </tr>
+                </thead>
+                <h4 class="center" th:text="${ mensagem }"></h4>
+                <tbody>
+                <tr th:each="sessao : ${sessoes}" class="operacoes">
+                    <td th:text="${sala.filme.nome}"></td>
+                    <td th:text="${sala.sala.descricao}"></td>
+                    <td th:text="${sala.dataInicio}"></td>
+                    <td th:text="${sala.dataFim}"></td>
+                    <td th:text="${sala.horario}"></td>
+                    <td>
+                        <a class="waves-effect waves-light btn btn-atualizar" th:href="@{${'/sala/'+sala.id}}" th:attr="data-id=${sala.id}"><i class="material-icons left">update</i>Atualizar</a>
+                        <a class="waves-effect waves-light btn red" th:href="@{${'/sala/remover/'+sala.id}}"><i class="material-icons left">delete</i>Remover</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div style="display: none;" id="mensagem" th:text="${msg}"></div>
+<div style="display: none;" id="comando" th:text="${comando}"></div>
+
+<script src="/webjars/jquery/2.2.4/jquery.js"></script>
+<script src="/webjars/materialize/1.0.0-beta/dist/js/materialize.min.js"></script>
+<script th:src="@{/js/script.js}"></script>
+
+<script>
+    function adicionar(){
+        $("#formDados").attr("action", $("#formDados").attr("data-id")+"add");
+        $("#id").val("");
+        $("#nome").val("");
+        $("#capacidade").val("");
+        M.Modal.getInstance(modalDados).open();
+    };
+</script>
+</body>
+</html>

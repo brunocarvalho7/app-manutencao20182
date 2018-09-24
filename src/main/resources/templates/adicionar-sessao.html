@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <title>Index</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link href="/webjars/materialize/1.0.0-beta/dist/css/materialize.css" type="text/css" rel="stylesheet"
+          media="screen,projection"/>
+</head>
+<body>
+<div class="container">
+    <center>
+        <h3>Adicionar sessão</h3>
+    </center>
+    <br />
+
+    <div class="row">
+        <form action="/sessao/add" th:object="${sessao}" method="POST">
+            <div class="col s12">
+                <label for="SelecionarFilme">Selecione o Filme</label> <select
+                    class="browser-default" name="filme">
+                <option value="" disabled="disabled" selected="selected">Escolha
+                    um Filme</option>
+                <option th:each="filme: ${filmes}" th:value="${filme.id}"
+                        th:text="${filme.nome}"></option>
+            </select>
+            </div>
+
+            <div class="col s12">
+                <label>Sala</label> <select class="browser-default" id="sala"
+                                            name="sala">
+                <option value="Testa" disabled="disabled" selected="selected">Escolha
+                    uma Sala</option>
+                <option th:each="sala: ${salas}" th:value="${sala.id}"
+                        th:text="${sala.nome}"></option>
+            </select>
+            </div>
+            <div class="input-field col s4">
+                <input placeholder="####-##-##" id="dataIncio"
+                       name="dataInicio" type="date" class="validate" /> <label
+                    for="first_name">Data Inicial da Sessao</label>
+            </div>
+            <div class="input-field col s4">
+                <input placeholder="####-##-##" id="dataFim"
+                       name="dataFim" type="date" class="validate" /> <label
+                    for="first_name">Data Final da Sessao</label>
+            </div>
+
+            <div class="input-field col s4">
+                <input placeholder="Horário da Sessão" id="horario" name="horario"
+                       type="text" class="validate" />
+            </div>
+            <div class="col s4">
+                <button class="btn waves-effect waves-light" type="submit"
+                        name="action">Adicionar Sessao</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+<script src="/webjars/jquery/2.2.4/jquery.js"></script>
+<script src="/webjars/materializecss/0.97.7/js/materialize.js"></script>
+</body>
+</html>

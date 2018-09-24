@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+>
+<head>
+    <title>Filmes</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link href="/webjars/materialize/1.0.0-beta/dist/css/materialize.css" type="text/css" rel="stylesheet"
+          media="screen,projection"/>
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
+</head>
+<body>
+<header class="red z-depth-3">
+    <div class="row">
+        <h2 class="center"><i class="material-icons medium">content_paste</i>Cadastro de Filmes</h2>
+    </div>
+</header>
+<div class="container z-depth-2">
+    <div class="row">
+        <div class="col s12">
+            <table class="stripped">
+                <thead>
+                <tr>
+                    <th>Titulo</th>
+                    <th>Sinopse</th>
+                    <th>Duração</th>
+                    <th>Operações</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="filme : ${filmes}" class="operacoes">
+                    <td th:text="${filme.nome}"></td>
+                    <td th:text="${filme.sinopse}"></td>
+                    <td th:text="${filme.duracao}"></td>
+                    <td>
+                        <a class="waves-effect waves-light btn btn-atualizar" th:href="@{${'/filme/'+filme.id}}" th:attr="data-id=${filme.id}"><i class="material-icons left">update</i>Atualizar</a>
+                        <a class="waves-effect waves-light btn red" th:href="@{${'/filme/remover/'+filme.id}}"><i class="material-icons left">delete</i>Remover</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="fixed-action-btn direction-top btn-add">
+    <a class="btn-floating btn-large waves-effect waves-light red tooltipped" onclick="adicionar()" data-position="top" data-tooltip="Nova Sala"><i class="material-icons">add</i></a>
+</div>
+
+<div id="modalDados" class="modal">
+    <div class="modal-content">
+        <h4>Dados do Filme</h4>
+        <div class="row">
+            <form class="col s12" id="formDados" data-id="/filme/" action="#" th:action="@{/filme/add}" th:object="${filme}" method="POST">
+                <div class="row">
+                    <div class="input-field col s2">
+                        <input readonly="true" placeholder="Código" id="id" type="text" th:field="*{id}"/>
+                        <label for="id">Código</label>
+                    </div>
+                    <div class="input-field col s10">
+                        <input id="nome" type="text" class="validate" name="nome" th:field="*{nome}"/>
+                        <label for="nome">Título</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <input id="sinopse" type="text" class="validate" name="nome" th:field="*{sinopse}"/>
+                        <label for="sinopse">Sinopse</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input id="duracao" type="number" class="validate" th:field="*{duracao}"/>
+                        <label for="duracao">Duração</label>
+                    </div>
+                </div>
+                <button type="submit" class="btn center">Confirmar dados do Filme</button>
+            </form>
+        </div>
+
+            <div class="modal-footer">
+                <a href="/filme/" class="modal-close waves-effect waves-green btn red">Cancelar modificações</a>
+            </div>
+    </div>
+</div>
+
+<div style="display: none;" id="mensagem" th:text="${msg}"></div>
+<div style="display: none;" id="comando" th:text="${comando}"></div>
+
+<script src="/webjars/jquery/2.2.4/jquery.js"></script>
+<script src="/webjars/materialize/1.0.0-beta/dist/js/materialize.min.js"></script>
+<script th:src="@{/js/script.js}"></script>
+
+<script>
+    function adicionar(){
+        $("#formDados").attr("action", $("#formDados").attr("data-id")+"add");
+        $("#id").val("");
+        $("#nome").val("");
+        $("#sinopse").val("");
+        $("#duracao").val("");
+        M.Modal.getInstance(modalDados).open();
+    };
+</script>
+</body>
+</html>
