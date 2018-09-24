@@ -1,0 +1,83 @@
+version: 2.0
+jobs:
+    build:
+      docker:
+        - image: circleci/openjdk:8-jdk
+      steps:
+        - checkout
+        - restore_cache:
+                keys:
+                - v1-dependencies-{{checksum "pom.xml"}}
+                - v1-dependencies
+        - run: mvn dependency:go-offline
+        - save_cache:
+                paths: ~/.m2
+                key: v1-dependencies-{{checksum "pom.xml"}}
+        # - persist_to_workspace:
+        #         <<: *source
+
+    deploy:
+      docker:
+        - image: buildpack-deps:trusty
+      steps:
+        - checkout
+        - run:
+            name: Deploy to heroku
+            command: git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git master
+workflows:
+  version: 2
+  build-and-deploy:
+    jobs:
+      - build:
+          filters:
+            branches:
+              only: dev
+      - deploy:
+          requires:
+            - build
+# version: 2
+# jobs:
+#   build:
+#     docker:
+#       - image: circleci/openjdk:8-jdk
+#     steps:
+#       - checkout
+#       - restore_cache:
+#               keys:
+#               - v1-dependencies-{{checksum "pom.xml"}}
+#               - v1-dependencies
+#       - run: mvn dependency:go-offline
+#       - save_cache:
+#               paths: ~/.m2
+#               key: v1-dependencies-{{checksum "pom.xml"}}
+#       - persist_to_workspace:
+#               <<: *source
+
+#   deploy:
+#     docker:
+#       - image: buildpack-deps:trusty
+#     steps:
+#       - checkout
+#       - run:
+#       - name: Deploy master to heroku
+#       - command: |
+#         git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git master
+# workflows:
+#   version: 2
+#   build-deploy:
+#     jobs:
+#       - build
+#       - deploy:
+#           requires:
+#             - build
+#           filters:
+#             branches:
+#               only: master
+
+      # - run:
+      #     name: Print the Current Time
+      #     command: date
+
+            # - run:
+      #     name: Print the Current Time
+      #     command: date
