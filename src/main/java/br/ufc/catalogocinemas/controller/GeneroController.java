@@ -62,12 +62,14 @@ public class GeneroController {
     public ModelAndView atualizarGenero(@ModelAttribute Genero genero){
         ModelAndView model = new ModelAndView("genero");
 
-        if(genero != null && genero.getId() > 0){
+        if(genero != null && genero.getId() != null && genero.getId() > 0){
             if(genero.getDescricao() != null && genero.getDescricao().trim().isEmpty() == false){
                 Genero generoResponse = sService.atualizarGenero(genero);
 
-                model.addObject("genero", generoResponse);
-                model.getModelMap().addAttribute("msg", "Gênero " + generoResponse.getDescricao() + " atualizado com sucesso!!");
+                if(generoResponse != null){
+                    model.addObject("genero", generoResponse);
+                    model.getModelMap().addAttribute("msg", "Gênero " + generoResponse.getDescricao() + " atualizado com sucesso!!");
+                }
             }
         }else{
             model.getModelMap().addAttribute("msg", "Erro ao tentar atualizar o gênero!");
