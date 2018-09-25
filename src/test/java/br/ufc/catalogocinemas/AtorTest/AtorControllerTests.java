@@ -116,27 +116,21 @@ public class AtorControllerTests {
     public void erroAoAtualizarAtorComNomeNulaTest(){
         Ator ator = new Ator(null, "aosdafiojdfojasiodjfasdf");
 
-        Ator atorResponse = (Ator) controller.atualizarAtor(ator).getModel().get("ator");
-
-        Assert.assertNull(atorResponse);
+        Assert.assertNull(controller.atualizarAtor(ator).getModel().get("ator"));
     }
 
     @Test
     public void erroAoAtualizarAtorComNomeVaziaTest(){
         Ator ator = new Ator("", "aosdafiojdfojasiodjfasdf");
 
-        Ator atorResponse = (Ator) controller.atualizarAtor(ator).getModel().get("ator");
-
-        Assert.assertNull(atorResponse);
+        Assert.assertNull(controller.atualizarAtor(ator).getModel().get("ator"));
 
     }
     @Test
     public void erroAoAtualizarAtorComNomeSoComEspacosTest(){
         Ator ator = new Ator("   ", "aosdafiojdfojasiodjfasdf");
 
-        Ator atorResponse = (Ator) controller.atualizarAtor(ator).getModel().get("ator");
-
-        Assert.assertNull(atorResponse);
+        Assert.assertNull(controller.atualizarAtor(ator).getModel().get("ator"));
 
     }
 
@@ -144,12 +138,9 @@ public class AtorControllerTests {
     public void erroAoAtualizarAtorComIdNaoCadastradoTest(){
         Ator ator = new Ator(" iii ", "aosdafiojdfojasiodjfasdf");
 
-
         ator.setId(90);
 
-        Ator atorResponse = (Ator) controller.atualizarAtor(ator).getModel().get("ator");
-
-        Assert.assertNull(atorResponse);
+        Assert.assertNull(controller.atualizarAtor(ator).getModel().get("ator"));
     }
 
     @Test
