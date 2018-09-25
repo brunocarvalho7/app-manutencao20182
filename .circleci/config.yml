@@ -10,7 +10,12 @@ jobs:
                 - v1-dependencies-{{checksum "pom.xml"}}
                 - v1-dependencies
         - run: mvn dependency:go-offline
-        - run: mvn package
+        - run: 
+          command: mvn package
+          environment:
+            DATABASE_URL: $JDBC_DATABASE_URL
+            DATABASE_USER: $JDBC_DATABASE_USERNAME
+            DATABASE_PASSWORD: $JDBC_DATABASE_PASSWORD
         - store_test_results: # uploads the test metadata from the `target/surefire-reports` directory so that it can show up in the CircleCI dashboard.
                 path: target/surefire-reports
         - save_cache:
