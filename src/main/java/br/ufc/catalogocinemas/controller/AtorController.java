@@ -57,12 +57,14 @@ public class AtorController {
     public ModelAndView atualizarAtor(@ModelAttribute Ator ator){
         ModelAndView model = new ModelAndView("ator");
 
-        if(ator != null && ator.getId() > 0){
+        if(ator != null && ator.getId() != null && ator.getId() > 0){
             if(ator.getNome() != null && ator.getNome().trim().isEmpty() == false){
                 Ator atorResponse = sService.atualizarAtor(ator);
 
-                model.addObject("ator", atorResponse);
-                model.getModelMap().addAttribute("msg", "Ator " + atorResponse.getNome() + " atualizado com sucesso!!");
+                if(atorResponse != null) {
+                    model.addObject("ator", atorResponse);
+                    model.getModelMap().addAttribute("msg", "Ator " + atorResponse.getNome() + " atualizado com sucesso!!");
+                }
             }
         }else{
             model.getModelMap().addAttribute("msg", "Erro ao tentar atualizar o gênero!");
