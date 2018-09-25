@@ -10,6 +10,9 @@ jobs:
                 - v1-dependencies-{{checksum "pom.xml"}}
                 - v1-dependencies
         - run: mvn dependency:go-offline
+        - run: mvn package
+        - store_test_results: # uploads the test metadata from the `target/surefire-reports` directory so that it can show up in the CircleCI dashboard.
+          path: target/surefire-reports
         - save_cache:
                 paths: ~/.m2
                 key: v1-dependencies-{{checksum "pom.xml"}}
