@@ -13,9 +13,9 @@ jobs:
         - run: 
             command: mvn package
             environment:
-              JDBC_DATABASE_URL: $JDBC_DATABASE_URL
-              JDBC_DATABASE_USERNAME: $JDBC_DATABASE_USERNAME
-              JDBC_DATABASE_PASSWORD: $JDBC_DATABASE_PASSWORD
+              JDBC_DATABASE_URL: $DATABASE_URL
+              JDBC_DATABASE_USERNAME: $DATABASE_USERNAME
+              JDBC_DATABASE_PASSWORD: $DATABASE_PASSWORD
         - store_test_results: # uploads the test metadata from the `target/surefire-reports` directory so that it can show up in the CircleCI dashboard.
                 path: target/surefire-reports
         - save_cache:
