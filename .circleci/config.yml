@@ -4,7 +4,7 @@ jobs:
       docker:
         - image: maven:3.5.0-jdk-8
           environment:
-            JDBC_DATABASE_URL: jdbc:postgresql://127.0.0.1:5432/app-manutencao20182
+            JDBC_DATABASE_URL: jdbc:postgresql://127.0.0.1:5432/manutencao20182
             JDBC_DATABASE_USERNAME: postgres
             JDBC_DATABASE_PASSWORD: postgres
         - image: postgres:9.6
@@ -16,7 +16,7 @@ jobs:
         - run: apt-get update -qq && apt-get install -y postgresql
         - run:
             command: |
-              psql -h 127.0.0.1 -U postgres -c "CREATE DATABASE app-manutencao20182;"
+              psql -h 127.0.0.1 -U postgres -c "CREATE DATABASE manutencao20182;"
               psql -h 127.0.0.1 -U postgres -c "CREATE USER postgres WITH PASSWORD 'postgres'; GRANT ALL PRIVILEGES ON DATABASE app-manutencao20182 TO postgres;"
         - restore_cache:
                 keys:
