@@ -47,13 +47,13 @@ public class CinemaServiceTests {
 
     @Test
     public void buscarTodosOsCinemas(){
-        databaseUtils.deleteAllCinemas();
+        int qtdAnterior = service.buscarTodosOsCinemas().size();
 
         service.addCinema(new Cinema("Cinema Pinheiro", "Rua 1", "Quixadá"));
         service.addCinema(new Cinema("Cinemark", "Av. Washington Soares", "Fortaleza"));
         service.addCinema(new Cinema("UCI", "Av. Washington Soares", "Fortaleza"));
 
-        Assert.assertEquals(3, service.buscarTodosOsCinemas().size());
+        Assert.assertEquals(qtdAnterior + 3, service.buscarTodosOsCinemas().size());
     }
 
     @Test

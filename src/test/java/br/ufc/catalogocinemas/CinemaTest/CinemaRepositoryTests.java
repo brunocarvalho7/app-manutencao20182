@@ -70,13 +70,13 @@ public class CinemaRepositoryTests {
     
     @Test
     public void buscarTodosOsCinemasTest(){
-    	databaseUtils.deleteAllCinemas();
+    	int qtdAnterior = repository.findAll().size();
     	
     	repository.save(new Cinema("Pinheiro", "Avenida da Universidade", "Quixadá"));
     	repository.save(new Cinema("UCI Iguatemi", "Avenida WS", "Fortaleza"));
     	repository.save(new Cinema("Kinoplex Via Sul", "Avenida WS", "Fortaleza"));
     	
-    	Assert.assertEquals(3, repository.findAll().size());
+    	Assert.assertEquals(qtdAnterior + 3, repository.findAll().size());
     }
     
     public void erroAoBuscarTodosOsCinemasTest(){
