@@ -57,12 +57,14 @@ public class DiretorController {
     public ModelAndView atualizarDiretor(@ModelAttribute Diretor diretor){
         ModelAndView model = new ModelAndView("diretor");
 
-        if(diretor != null && diretor.getId() > 0){
+        if(diretor != null && diretor.getId() != null && diretor.getId() > 0){
             if(diretor.getNome() != null && diretor.getNome().trim().isEmpty() == false){
                 Diretor diretorResponse = sService.atualizarDiretor(diretor);
 
-                model.addObject("diretor", diretorResponse);
-                model.getModelMap().addAttribute("msg", "Diretor " + diretorResponse.getNome() + " atualizado com sucesso!!");
+                if(diretorResponse != null){
+                    model.addObject("diretor", diretorResponse);
+                    model.getModelMap().addAttribute("msg", "Diretor " + diretorResponse.getNome() + " atualizado com sucesso!!");
+                }
             }
         }else{
             model.getModelMap().addAttribute("msg", "Erro ao tentar atualizar o gênero!");

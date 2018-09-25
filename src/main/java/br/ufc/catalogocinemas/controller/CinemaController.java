@@ -77,8 +77,10 @@ public class CinemaController {
                 if(cinema.getCidade() != null && !cinema.getCidade().trim().isEmpty()){
                     Cinema cinemaResponse = sService.atualizarCinema(cinema);
 
-                    model.addObject("cinema", cinemaResponse);
-                    model.getModelMap().addAttribute("msg", "Cinema " + cinemaResponse.getNome() + " atualizado com sucesso!!");
+                    if(cinemaResponse != null) {
+                        model.addObject("cinema", cinemaResponse);
+                        model.getModelMap().addAttribute("msg", "Cinema " + cinemaResponse.getNome() + " atualizado com sucesso!!");
+                    }
                 }else{
                     model.getModelMap().addAttribute("msg","Informe uma cidade válida!!");
                 }
