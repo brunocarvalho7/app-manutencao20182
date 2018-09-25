@@ -17,7 +17,7 @@ jobs:
         - run:
             command: |
               psql -h 127.0.0.1 -U postgres -c "CREATE DATABASE manutencao20182;"
-              psql -h 127.0.0.1 -U postgres -c "CREATE USER postgres WITH PASSWORD 'postgres'; GRANT ALL PRIVILEGES ON DATABASE app-manutencao20182 TO postgres;"
+              psql -h 127.0.0.1 -U postgres -c "CREATE USER postgres WITH PASSWORD 'postgres'; GRANT ALL PRIVILEGES ON DATABASE manutencao20182 TO postgres;"
         - restore_cache:
                 keys:
                 - v1-dependencies-{{checksum "pom.xml"}}
