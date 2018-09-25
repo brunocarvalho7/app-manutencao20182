@@ -4,6 +4,9 @@ jobs:
       docker:
         - image: circleci/openjdk:8-jdk
         - image: postgres:9.6
+  
+      working_directory: ~/repo
+
       steps:
         - checkout
         - run: apt-get update -qq && apt-get install -y postgresql
