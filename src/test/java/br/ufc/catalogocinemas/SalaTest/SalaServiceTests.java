@@ -64,13 +64,13 @@ public class SalaServiceTests {
 
     @Test
     public void buscarTodasAsSalas(){
-        databaseUtils.deleteAllSalas();
+        int qtdAnterior = salaService.buscarTodasAsSalas().size();
 
         salaService.addSala(new Sala("Sala1", TipoSala.SALA_3D, cinema, 100));
         salaService.addSala(new Sala("Sala2", TipoSala.SALA_3D, cinema, 100));
         salaService.addSala(new Sala("Sala3", TipoSala.SALA_3D, cinema, 100));
 
-        Assert.assertEquals(3, salaService.buscarTodasAsSalas().size());
+        Assert.assertEquals(qtdAnterior + 3, salaService.buscarTodasAsSalas().size());
     }
 
     @Test

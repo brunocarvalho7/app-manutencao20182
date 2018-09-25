@@ -5,7 +5,7 @@
 
 	<groupId>br.ufc</groupId>
 	<artifactId>catalogo-cinemas</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0</version>
 	<packaging>war</packaging>
 
 	<name>catalogo-cinemas</name>

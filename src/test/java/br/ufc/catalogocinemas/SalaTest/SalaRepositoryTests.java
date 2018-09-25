@@ -74,13 +74,13 @@ public class SalaRepositoryTests {
 
     @Test
     public void buscarTodasAsSalas(){
-        databaseUtils.deleteAllSalas();
+        int qtdAnterior = repository.findAll().size();
 
         repository.save(new Sala("Sala1", TipoSala.SALA_3D, cinema, 100));
         repository.save(new Sala("Sala2", TipoSala.SALA_3D, cinema, 100));
         repository.save(new Sala("Sala3", TipoSala.SALA_3D, cinema, 100));
 
-        Assert.assertEquals(3, repository.findAll().size());
+        Assert.assertEquals(qtdAnterior + 3, repository.findAll().size());
     }
 
     @Test
