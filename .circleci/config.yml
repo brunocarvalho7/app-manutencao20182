@@ -3,6 +3,7 @@ jobs:
     build:
       docker:
         - image: circleci/openjdk:8-jdk
+        - image: postgres:9.6
       steps:
         - checkout
         - restore_cache:
