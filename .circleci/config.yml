@@ -2,7 +2,11 @@ version: 2.0
 jobs:
     build:
       docker:
-        - image: circleci/openjdk:8-jdk
+        - image: maven:3.5.0-jdk-8
+          environment:
+            JDBC_DATABASE_URL: jdbc:postgresql://127.0.0.1:5432/app-manutencao20182
+            JDBC_DATABASE_USERNAME: postgres
+            JDBC_DATABASE_PASSWORD: postgres
         - image: postgres:9.6
   
       working_directory: ~/repo
@@ -21,10 +25,6 @@ jobs:
         - run: mvn dependency:go-offline
         - run: 
             command: mvn package
-            environment:
-              JDBC_DATABASE_URL: jdbc:postgresql://127.0.0.1:5432/app-manutencao20182
-              JDBC_DATABASE_USERNAME: postgres
-              JDBC_DATABASE_PASSWORD: postgres
         - store_test_results: # uploads the test metadata from the `target/surefire-reports` directory so that it can show up in the CircleCI dashboard.
                 path: target/surefire-reports
         - save_cache:
