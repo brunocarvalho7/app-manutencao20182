@@ -32,9 +32,9 @@ jobs:
             key: v1-dependencies-{{checksum "pom.xml"}}
         - store_artifacts:
             path: target/catalogo-cinemas.war
-        - install_heroku-cli:
+        - install_heroku_cli:
             run: curl https://cli-assets.heroku.com/install.sh | sh
-        - heroku-cli-version:
+        - heroku_cli_version:
             run: heroku --version
         - directories:
             run: ls
