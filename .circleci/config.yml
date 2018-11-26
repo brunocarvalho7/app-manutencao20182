@@ -23,15 +23,21 @@ jobs:
                 - v1-dependencies-{{checksum "pom.xml"}}
                 - v1-dependencies
         - run: mvn dependency:go-offline
-        - run: 
+        - run:
             command: mvn package -DskipTests
-        - store_test_results: 
+        - store_test_results:
             path: target/surefire-reports
         - save_cache:
             paths: ~/.m2
             key: v1-dependencies-{{checksum "pom.xml"}}
         - store_artifacts:
-            path: target/catalogo-cinemas.war        
+            path: target/catalogo-cinemas.war
+        - install_heroku-cli:
+            run: curl https://cli-assets.heroku.com/install.sh | sh
+        - heroku-cli-version:
+            run: heroku --version
+        - directories:
+            run: ls
 
     deploy:
       docker:
@@ -52,6 +58,3 @@ workflows:
           filters:
             branches:
               only: master
-      - deploy:
-          requires:
-            - build
