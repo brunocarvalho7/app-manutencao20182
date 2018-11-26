@@ -1,7 +1,6 @@
 package br.ufc.catalogocinemas.CinemaTest;
 
 import br.ufc.catalogocinemas.model.Cinema;
-import br.ufc.catalogocinemas.model.Diretor;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -10,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import br.ufc.catalogocinemas.model.Genero;
 import br.ufc.catalogocinemas.service.CinemaService;
 import br.ufc.catalogocinemas.utils.DatabaseUtils;
 

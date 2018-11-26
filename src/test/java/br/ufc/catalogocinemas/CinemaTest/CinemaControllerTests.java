@@ -1,7 +1,5 @@
 package br.ufc.catalogocinemas.CinemaTest;
 
-import java.util.List;
-
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,7 +9,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import br.ufc.catalogocinemas.controller.CinemaController;
 import br.ufc.catalogocinemas.model.Cinema;
-import br.ufc.catalogocinemas.model.Genero;
 import br.ufc.catalogocinemas.utils.DatabaseUtils;
 
 @RunWith(SpringRunner.class)
@@ -462,7 +459,7 @@ public class CinemaControllerTests {
     public void erroAoAtualizarCinemaComIdNaoCadastradoTest(){
         Cinema cinema = new Cinema("Cinema Pinheiro", "Avenida da Universidade", "Fortaleza");
 
-        cinema.setId(90);
+        cinema.setId(89990);
 
         Assert.assertNull(controller.atualizarCinema(cinema).getModel().get("cinema"));
     }

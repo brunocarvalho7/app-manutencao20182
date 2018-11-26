@@ -1,9 +1,9 @@
 package br.ufc.catalogocinemas.controller;
 
-import br.ufc.catalogocinemas.mocks.Mocks;
 import br.ufc.catalogocinemas.model.Filme;
 import br.ufc.catalogocinemas.model.Sala;
 import br.ufc.catalogocinemas.model.Sessao;
+import br.ufc.catalogocinemas.model.pojo.SessaoDTO;
 import br.ufc.catalogocinemas.service.FilmeService;
 import br.ufc.catalogocinemas.service.SalaService;
 import br.ufc.catalogocinemas.service.SessaoService;
@@ -18,7 +18,6 @@ import javax.validation.ConstraintViolationException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -92,8 +91,14 @@ public class SessaoController {
     }
 
     @RequestMapping(path = "/update")
-    public ModelAndView atualizarSessao(Sessao sessao){
+    public ModelAndView atualizarSessao(SessaoDTO sessaoPojo){
         ModelAndView model = new ModelAndView("sessao");
+
+        Filme filme = filmeService.buscarFilmeId(sessaoPojo.getFilmeId());
+        Sala sala = salaService.buscarSala(sessaoPojo.getSalaId());
+
+        Sessao sessao = new Sessao(sessaoPojo.getId(), filme, sala, sessaoPojo.getHorario(),
+                        sessaoPojo.getDataInicio(), sessaoPojo.getDataFim());
 
         String msgRetorno     = Constantes.MSG_SUCESSO_ATUALIZAR_SESSAO;
         Sessao sessaoResponse = sService.atualizarSessao(sessao);
@@ -136,37 +141,6 @@ public class SessaoController {
 
         return model;
     }
-//    @PostMapping("add")
-//    public ModelAndView addSessao(@RequestParam int filme,@RequestParam int sala,
-//                                  @RequestParam String horario,@RequestParam String dataInicio,@RequestParam String dataFim){
-//
-//        ModelAndView model = new ModelAndView("adicionar-sessao");
-//
-//        if (filme != null && sala != null){
-//            DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ISO_LOCAL_DATE;
-//            DateTimeFormatter TimeFormatter = DateTimeFormatter.ISO_LOCAL_TIME;
-//
-//            Sessao sessao = new Sessao(filmeService.buscarFilmeId(filme),
-//                    salaService.buscarSala(sala), LocalTime.parse(horario, TimeFormatter),
-//                    LocalDate.parse(dataInicio, dateTimeFormatter), LocalDate.parse(dataFim, dateTimeFormatter));
-//
-//        }
-//        String msgRetorno     = Constantes.MSG_SUCESSO_INSERIR_SESSAO;
-//
-//        Sessao sessaoResponse = null;
-//
-//        try{
-//            sessaoResponse = sService.addSessao(sessao);
-//        }catch(ConstraintViolationException e){
-//            msgRetorno = Constantes.MSG_ERRO_INSERIR_SESSAO;
-//        }
-//        model.addObject("salas", salaService.getAll()) ;
-//        model.addObject("filmes", filmeService.getAll()) ;
-//        model.addObject("sessao", sessaoResponse);
-//        model.addObject("msg", msgRetorno);
-//
-//        return model;
-//    }
 
     @RequestMapping(path = "/delete/{id}")
     public ModelAndView removerSessao(int id){

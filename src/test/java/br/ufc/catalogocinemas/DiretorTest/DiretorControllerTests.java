@@ -1,7 +1,6 @@
 package br.ufc.catalogocinemas.DiretorTest;
 
 import br.ufc.catalogocinemas.controller.DiretorController;
-import br.ufc.catalogocinemas.model.Ator;
 import br.ufc.catalogocinemas.model.Diretor;
 import br.ufc.catalogocinemas.utils.DatabaseUtils;
 import org.junit.Assert;

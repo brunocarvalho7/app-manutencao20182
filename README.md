@@ -16,3 +16,8 @@ https://app-manutencao20182.herokuapp.com
 
 * [Heroku](https://devcenter.heroku.com/)
 * [CircleCI](https://circleci.com/docs/)
+
+# Rodar SonarCloud
+```
+mvn install sonar:sonar   -Dsonar.projectKey=brunocarvalho7_app-manutencao20182   -Dsonar.organization=brunocarvalho7-github   -Dsonar.host.url=https://sonarcloud.io   -Dsonar.login=14bf9bff9585ef4232f52621cc016cf83d2da22d
+```

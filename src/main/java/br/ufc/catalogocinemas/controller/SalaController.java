@@ -130,5 +130,4 @@ public class SalaController {
     public List<Sala> salasDisponiveisParaOCinema(int idCinema){
         return sService.salasDisponiveisParaOCinema(idCinema);
     }
-
 }
