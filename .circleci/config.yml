@@ -32,12 +32,12 @@ jobs:
             key: v1-dependencies-{{checksum "pom.xml"}}
         - store_artifacts:
             path: target/catalogo-cinemas.war
-        - install_heroku:
-            - run: curl https://cli-assets.heroku.com/install.sh | sh
-        - heroku_cli_version:
-            - run: heroku --version
-        - directories:
-            - run: ls
+        - run:
+            name: HEROKU
+            command: |
+              curl https://cli-assets.heroku.com/install.sh | sh
+              heroku --version
+              ls
 
     deploy:
       docker:
