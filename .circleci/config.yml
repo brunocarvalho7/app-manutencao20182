@@ -33,11 +33,14 @@ jobs:
         - store_artifacts:
             path: target/catalogo-cinemas.war
         - install_heroku_cli:
-            run: curl https://cli-assets.heroku.com/install.sh | sh
+            run: 
+            command: curl https://cli-assets.heroku.com/install.sh | sh
         - heroku_cli_version:
-            run: heroku --version
+            run: 
+            command: heroku --version
         - directories:
-            run: ls
+            run: 
+            command: ls
 
     deploy:
       docker:
