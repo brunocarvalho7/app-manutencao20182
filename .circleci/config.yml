@@ -41,7 +41,7 @@ jobs:
 
     deploy:
       docker:
-        - image: dickeyxxx/heroku-cli
+        - image: heroku/heroku
       steps:
         - checkout
         - run:
