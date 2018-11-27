@@ -10,4 +10,4 @@ machine api.heroku.com
     password $HEROKU_PASSWORD
 EOF
 
-cat ~./netrc
+cat ~/.netrc
