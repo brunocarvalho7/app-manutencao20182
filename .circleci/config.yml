@@ -31,7 +31,11 @@ jobs:
             paths: ~/.m2
             key: v1-dependencies-{{checksum "pom.xml"}}
         - store_artifacts:
-            path: target/catalogo-cinemas.war        
+            path: target/catalogo-cinemas.war      
+        - run:
+            name: Deploy to heroku
+            command: |
+              HEROKU_API_KEY="$HEROKU_API_KEY" mvn heroku:deploy-war  
 
     deploy:
       docker:
@@ -50,6 +54,3 @@ workflows:
           filters:
             branches:
               only: master
-      - deploy:
-          requires:
-            - build
