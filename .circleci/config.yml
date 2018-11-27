@@ -38,6 +38,7 @@ jobs:
             command: |
               curl https://cli-assets.heroku.com/install.sh | sh
               heroku plugins:install java
+              heroku config:set HEROKU_API_KEY=$HEROKU_API_KEY
         - run: heroku login
         - run: heroku buildpacks:clear --app app-manutencao20182
         - run: heroku war:deploy target/catalogo-cinemas.war --app app-manutencao20182
