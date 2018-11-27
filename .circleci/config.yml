@@ -36,7 +36,7 @@ jobs:
             name: HEROKU
             command: |
               curl https://cli-assets.heroku.com/install.sh | sh
-              heroku --version
+              heroku login
               ls
 
     deploy:
