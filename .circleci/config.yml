@@ -32,12 +32,15 @@ jobs:
             key: v1-dependencies-{{checksum "pom.xml"}}
         - store_artifacts:
             path: target/catalogo-cinemas.war
+        - run: bash .circleci/setup-heroku.sh
         - run:
             name: HEROKU
             command: |
               curl https://cli-assets.heroku.com/install.sh | sh
+              heroku plugins:install java
               heroku login
-              ls
+              heroku buildpacks:clear --app app-manutencao20182
+              heroku war:deploy target/catalogo-cinemas.war --app app-manutencao20182
 
     deploy:
       docker:
