@@ -24,6 +24,7 @@
 				<sonar.core.codeCoveragePlugin>jacoco</sonar.core.codeCoveragePlugin>
 				<sonar.jacoco.reportPath>${project.basedir}/target/jacoco.exec</sonar.jacoco.reportPath>
 				<sonar.language>java</sonar.language>
+				<heroku.appName>app-manutencao20182</heroku.appName>
 			</properties>
 			<dependencies>
 				<dependency>
@@ -96,27 +97,6 @@
 						<artifactId>spring-boot-maven-plugin</artifactId>
 					</plugin>
 					<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-dependency-plugin</artifactId>
-					<version>2.3</version>
-					<executions>
-						<execution>
-							<phase>package</phase>
-							<goals><goal>copy</goal></goals>
-							<configuration>
-								<artifactItems>
-									<artifactItem>
-										<groupId>com.github.jsimone</groupId>
-											<artifactId>webapp-runner</artifactId>
-										<version>9.0.11.0</version>
-										<destFileName>webapp-runner.jar</destFileName>
-									</artifactItem>
-								</artifactItems>
-							</configuration>
-						</execution>
-					</executions>
-					</plugin>
-					<plugin>
 						<groupId>org.apache.tomcat.maven</groupId>
 						<artifactId>tomcat7-maven-plugin</artifactId>
 						<version>2.2</version>
@@ -182,6 +162,13 @@
 									</goals>
 							</execution>
 						</executions>
+					</plugin>
+					<plugin>
+						<groupId>com.heroku.sdk</groupId>
+						<artifactId>heroku-maven-plugin</artifactId>
+						<configuration>
+							<appName>${heroku.appName}</appName>
+						</configuration>
 					</plugin>
 				</plugins>
 			</build>
