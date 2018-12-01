@@ -33,9 +33,9 @@ public class AtorRepositoryTests {
 
         repository.save(ator);
 
-        repository.delete(ator.getId());
+        repository.deleteById(ator.getId());
 
-        Assert.assertNull(repository.findOne(ator.getId()));
+        Assert.assertFalse(repository.findById(ator.getId()).isPresent());
     }
 
     @Test
@@ -44,12 +44,12 @@ public class AtorRepositoryTests {
 
         repository.save(ator);
 
-        Assert.assertNotNull(repository.findOne(ator.getId()));
+        Assert.assertNotNull(repository.findById(ator.getId()));
     }
 
     @Test
     public void erroAobuscarAtorInexistenteTest(){
-        Assert.assertNull(repository.findOne(987));
+    	Assert.assertFalse(repository.findById(987).isPresent());
     }
 
     @Test

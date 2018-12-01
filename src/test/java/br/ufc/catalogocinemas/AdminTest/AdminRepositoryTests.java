@@ -1,8 +1,7 @@
 package br.ufc.catalogocinemas.AdminTest;
 
-import br.ufc.catalogocinemas.model.Admin;
-import br.ufc.catalogocinemas.repository.AdminRepository;
-import br.ufc.catalogocinemas.utils.DatabaseUtils;
+import java.util.Optional;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -10,6 +9,10 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import br.ufc.catalogocinemas.model.Admin;
+import br.ufc.catalogocinemas.repository.AdminRepository;
+import br.ufc.catalogocinemas.utils.DatabaseUtils;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -41,23 +44,23 @@ public class AdminRepositoryTests {
 
     @Test
     public void logarCorretamenteTest(){
-        Admin adminResponse = repository.logar(adminTeste.getLogin(), adminTeste.getSenha());
-
-        Assert.assertNotNull(adminResponse);
+        Optional<Admin> adminResponse = repository.logar(adminTeste.getLogin(), adminTeste.getSenha());
+        
+        Assert.assertTrue(adminResponse.isPresent());
     }
 
     @Test
     public void falhaAoLogarComLoginIncorretoTest(){
-        Admin adminResopnse = repository.logar("verificacao", adminTeste.getSenha());
+        Optional<Admin> adminResopnse = repository.logar("verificacao", adminTeste.getSenha());
 
-        Assert.assertNull(adminResopnse);
+        Assert.assertFalse(adminResopnse.isPresent());
     }
 
     @Test
     public void falhaAoLogarComSenhaIncorretaTest(){
-        Admin adminResopnse = repository.logar(adminTeste.getLogin(), "aaaa");
+        Optional<Admin> adminResopnse = repository.logar(adminTeste.getLogin(), "aaaa");
 
-        Assert.assertNull(adminResopnse);
+        Assert.assertFalse(adminResopnse.isPresent());
     }
 
     @Test

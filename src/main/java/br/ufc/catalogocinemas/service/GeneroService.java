@@ -1,11 +1,13 @@
 package br.ufc.catalogocinemas.service;
 
-import br.ufc.catalogocinemas.model.Genero;
-import br.ufc.catalogocinemas.repository.GeneroRepository;
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import br.ufc.catalogocinemas.model.Genero;
+import br.ufc.catalogocinemas.repository.GeneroRepository;
 
 @Service
 public class GeneroService {
@@ -17,23 +19,23 @@ public class GeneroService {
         return sRepository.save(genero);
     }
 
-    public Genero removerGenero(int id){
-        Genero generoResponse = sRepository.findOne(id);
+    public Genero removerGenero(int id){    	
+        Optional<Genero> generoResponse = sRepository.findById(id);
 
-        System.out.println(generoResponse);
-
-        if(generoResponse != null)
-            sRepository.delete(id);
-
-        return generoResponse;
+        if(generoResponse.isPresent()) {
+        	sRepository.deleteById(id);
+        	return generoResponse.get();
+        }
+           
+        return null;
     }
 
     public Genero atualizarGenero(Genero genero){
-        Genero generoSearch = sRepository.findOne(genero.getId());
+        Optional<Genero> generoSearch = sRepository.findById(genero.getId());
 
         Genero generoResponse = null;
 
-        if(generoSearch != null)
+        if(generoSearch.isPresent())
             generoResponse = sRepository.save(genero);
 
         return generoResponse;
@@ -44,6 +46,6 @@ public class GeneroService {
     }
 
     public Genero buscarGenero(int id){
-        return sRepository.findOne(id);
+        return sRepository.findById(id).get();
     }
 }

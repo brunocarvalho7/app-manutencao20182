@@ -1,11 +1,13 @@
 package br.ufc.catalogocinemas.service;
 
-import br.ufc.catalogocinemas.model.Diretor;
-import br.ufc.catalogocinemas.repository.DiretorRepository;
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import br.ufc.catalogocinemas.model.Diretor;
+import br.ufc.catalogocinemas.repository.DiretorRepository;
 
 @Service
 public class DiretorService {
@@ -17,24 +19,25 @@ public class DiretorService {
     }
 
     public Diretor buscarDiretor(int id){
-        return sRepository.findOne(id);
+        return sRepository.findById(id).get();
     }
 
     public Diretor removerDiretor(int id){
-        Diretor diretorResponse = sRepository.findOne(id);
-        if(diretorResponse != null){
-            sRepository.delete(id);
+        Optional<Diretor> diretorResponse = sRepository.findById(id);
+        if(diretorResponse.isPresent()){
+            sRepository.deleteById(id);
+            return diretorResponse.get();
         }
 
-        return diretorResponse;
+        return null;
     }
 
     public Diretor atualizarDiretor(Diretor diretor){
-        Diretor diretorSearch = sRepository.findOne(diretor.getId());
+        Optional<Diretor> diretorSearch = sRepository.findById(diretor.getId());
 
         Diretor diretorResponse = null;
 
-        if(diretorSearch != null)
+        if(diretorSearch.isPresent())
             diretorResponse = sRepository.save(diretor);
 
         return diretorResponse;

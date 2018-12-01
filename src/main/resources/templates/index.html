@@ -6,7 +6,7 @@
 <head>
     <title>Index</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-    <link href="/webjars/materialize/1.0.0-beta/dist/css/materialize.css" type="text/css" rel="stylesheet"
+    <link href="/webjars/materialize/1.0.0-beta/dist/css/materialize.min.css" type="text/css" rel="stylesheet"
           media="screen,projection"/>
     <link th:href="@{/css/style.css}" rel="stylesheet" />
 </head>
@@ -16,8 +16,8 @@
 	<nav>
     <div class="nav-wrapper">
       <ul id="nav-mobile" class="left hide-on-med-and-down">
-        <li><a th:href="@{/index/}">Início</a></li>
-        <li><a th:href="@{~/ator/}">Ator</a></li>
+        <li><a th:href="@{/}">Início</a></li>
+        <li><a th:href="@{/ator/}">Ator</a></li>
         <li><a th:href="@{/sessao/}">Sessão</a></li>
         <li><a th:href="@{/cinema/}">Cinema</a></li>
         <li><a th:href="@{/diretor/}">Diretor</a></li>
@@ -39,9 +39,7 @@
 </div>
 
 
-
-
 <script src="/webjars/jquery/2.2.4/jquery.js"></script>
-<script src="/webjars/materializecss/0.97.7/js/materialize.js"></script>
+<script src="/webjars/materialize/1.0.0-beta/dist/js/materialize.min.js"></script>
 </body>
 </html>

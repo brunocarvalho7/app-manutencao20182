@@ -53,9 +53,9 @@ public class SalaRepositoryTests {
 
         repository.save(sala);
 
-        repository.delete(sala.getId());
+        repository.deleteById(sala.getId());
 
-        Assert.assertNull(repository.findOne(sala.getId()));
+        Assert.assertFalse(repository.findById(sala.getId()).isPresent());
     }
 
     @Test
@@ -64,12 +64,12 @@ public class SalaRepositoryTests {
 
         repository.save(sala);
 
-        Assert.assertNotNull(repository.findOne(sala.getId()));
+        Assert.assertNotNull(repository.findById(sala.getId()));
     }
 
     @Test
     public void erroAobuscarSalaInexistenteTest(){
-        Assert.assertNull(repository.findOne(987));
+    	Assert.assertFalse(repository.findById(987).isPresent());
     }
 
     @Test
@@ -94,8 +94,4 @@ public class SalaRepositoryTests {
 
         Assert.assertNotEquals(4, repository.findAll().size());
     }
-
-
-
-
 }

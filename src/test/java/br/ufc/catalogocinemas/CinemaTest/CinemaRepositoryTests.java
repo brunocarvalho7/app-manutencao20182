@@ -1,7 +1,6 @@
 package br.ufc.catalogocinemas.CinemaTest;
 
 import br.ufc.catalogocinemas.model.Cinema;
-import br.ufc.catalogocinemas.model.Sala;
 import br.ufc.catalogocinemas.repository.CinemaRepository;
 import br.ufc.catalogocinemas.repository.SalaRepository;
 import br.ufc.catalogocinemas.utils.DatabaseUtils;
@@ -50,8 +49,7 @@ public class CinemaRepositoryTests {
     	
     	repository.delete(cinema);
     	
-    	Assert.assertNull(repository.findOne(cinema.getId()));
-    	
+    	Assert.assertFalse(repository.findById(cinema.getId()).isPresent());
     }
     
     @Test
@@ -60,12 +58,12 @@ public class CinemaRepositoryTests {
     	
     	repository.save(cinema);
     	
-    	Assert.assertNotNull(repository.findOne(cinema.getId()));
+    	Assert.assertNotNull(repository.findById(cinema.getId()).get());
     }
     
     @Test
     public void erroAoBuscarCinemaInexistenteTest(){
-    	Assert.assertNull(repository.findOne(900));
+    	Assert.assertFalse(repository.findById(987).isPresent());
     }
     
     @Test

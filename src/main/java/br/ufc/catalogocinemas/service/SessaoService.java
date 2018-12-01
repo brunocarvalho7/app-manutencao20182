@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SessaoService {
@@ -30,8 +31,8 @@ public class SessaoService {
         return repository.buscarPorFilme(nome);
     }
 
-    public Sessao getSessaoPorId(int id){
-        return repository.findOne(id);
+    public Optional<Sessao> getSessaoPorId(int id){
+        return repository.findById(id);
     }
 
     public Sessao atualizarSessao(Sessao sessao){
@@ -43,10 +44,10 @@ public class SessaoService {
     }
 
     public Sessao removerSessao(int id){
-        Sessao s = this.getSessaoPorId(id);
+        Sessao s = this.getSessaoPorId(id).get();
 
         if(s != null){
-            repository.delete(id);
+            repository.deleteById(id);
             return s;
         }
 

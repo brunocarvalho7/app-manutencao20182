@@ -33,9 +33,9 @@ public class GeneroRepositoryTests {
 
         repository.save(genero);
 
-        repository.delete(genero.getId());
+        repository.deleteById(genero.getId());
 
-        Assert.assertNull(repository.findOne(genero.getId()));
+        Assert.assertFalse(repository.findById(genero.getId()).isPresent());
     }
 
     @Test
@@ -44,12 +44,12 @@ public class GeneroRepositoryTests {
 
         repository.save(genero);
 
-        Assert.assertNotNull(repository.findOne(genero.getId()));
+        Assert.assertNotNull(repository.findById(genero.getId()));
     }
 
     @Test
     public void erroAobuscarGeneroInexistenteTest(){
-        Assert.assertNull(repository.findOne(987));
+    	Assert.assertFalse(repository.findById(987).isPresent());
     }
 
     @Test

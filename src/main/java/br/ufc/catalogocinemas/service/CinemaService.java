@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CinemaService {
@@ -22,27 +23,29 @@ public class CinemaService {
     }
 
     public Cinema removerCinema(int id) {
-        Cinema cinemaResponse = sRepository.findOne(id);
+        Optional<Cinema> cinemaResponse = sRepository.findById(id);
 
-        if(cinemaResponse != null)
-            sRepository.delete(id);
+        if(cinemaResponse.isPresent()) {
+            sRepository.deleteById(id);
+            return cinemaResponse.get();
+        }
 
-        return cinemaResponse;
+        return null;
     }
 
     public Cinema atualizarCinema(Cinema cinema) {
-        Cinema cinemaSearch = sRepository.findOne(cinema.getId());
+        Optional<Cinema> cinemaSearch = sRepository.findById(cinema.getId());
 
         Cinema cinemaResponse = null;
 
-        if(cinemaSearch != null)
+        if(cinemaSearch.isPresent())
             cinemaResponse = sRepository.save(cinema);
 
         return cinemaResponse;
     }
 
     public Cinema buscarCinema(int id) {
-        return sRepository.findOne(id);
+        return sRepository.findById(id).get();
     }
 
     public List<Cinema> buscarTodosOsCinemas() {
@@ -52,8 +55,8 @@ public class CinemaService {
     public boolean vincularSala(int idSala, int idCinema) {
         try {
             Sala sala = salaService.buscarSala(idSala);
-
-            Cinema cinema = sRepository.findOne(idCinema);
+            
+            Cinema cinema = sRepository.findById(idCinema).get();
 
             cinema.vincularSala(sala);
             Cinema cinemaResponse = sRepository.save(cinema);
@@ -72,7 +75,7 @@ public class CinemaService {
 
     public boolean desvincularSala(int idSala, int idCinema) {
         Sala sala = salaService.buscarSala(idSala);
-        Cinema cinema = sRepository.findOne(idCinema);
+        Cinema cinema = sRepository.findById(idCinema).get();
 
         cinema.desvincularSala(sala);
         Cinema cinemaResponse = sRepository.save(cinema);

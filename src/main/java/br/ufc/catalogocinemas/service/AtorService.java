@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AtorService {
@@ -18,24 +19,25 @@ public class AtorService {
     }
 
     public Ator buscarAtor(int id){
-        return sRepository.findOne(id);
+        return sRepository.findById(id).get();
     }
 
     public Ator removerAtor(int id){
-        Ator atorResponse = sRepository.findOne(id);
-        if(atorResponse != null){
-            sRepository.delete(id);
+        Optional<Ator> atorResponse = sRepository.findById(id);
+        if(atorResponse.isPresent()){
+            sRepository.deleteById(id);
+            return atorResponse.get();
         }
 
-        return atorResponse;
+        return null;
     }
 
     public Ator atualizarAtor(Ator ator){
-        Ator atorSearch = sRepository.findOne(ator.getId());
+        Optional<Ator> atorSearch = sRepository.findById(ator.getId());
 
         Ator atorResponse = null;
 
-        if(atorSearch != null)
+        if(atorSearch.isPresent())
             atorResponse = sRepository.save(ator);
 
         return atorResponse;

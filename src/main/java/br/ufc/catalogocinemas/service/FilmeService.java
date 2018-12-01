@@ -20,7 +20,7 @@ public class FilmeService {
     }
 
     public Filme buscarFilmeId(Integer id) {
-        return sRepository.findOne(id);
+        return sRepository.findById(id).get();
     }
 
     public List<Filme> buscarFilmeNome(String nome) {
@@ -28,7 +28,7 @@ public class FilmeService {
     }
 
     public Filme atualizarFilme(Filme filme) {
-        Filme filmeSearch = sRepository.findOne(filme.getId());
+        Filme filmeSearch = sRepository.findById(filme.getId()).get();
 
         Filme filmeResponse = null;
 
@@ -43,10 +43,10 @@ public class FilmeService {
     }
 
     public Filme removerFilme(int id) {
-        Filme filmeResponse = sRepository.findOne(id);
+        Filme filmeResponse = sRepository.findById(id).get();
 
         if(filmeResponse != null)
-            sRepository.delete(id);
+            sRepository.deleteById(id);
 
         return filmeResponse;
     }

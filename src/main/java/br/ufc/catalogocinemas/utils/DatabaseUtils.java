@@ -1,10 +1,9 @@
 package br.ufc.catalogocinemas.utils;
 
-import org.apache.tomcat.jdbc.pool.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.sql.*;
+import javax.sql.DataSource;
 
 @Service
 public class DatabaseUtils {
@@ -36,6 +35,12 @@ public class DatabaseUtils {
             statement.execute("DELETE FROM ADMIN");
         }catch (SQLException e){
             System.err.println(e.getMessage());
+        }finally {
+        	try {
+				connection.close();
+			} catch (SQLException e) {
+				System.err.println(e.getMessage());
+			}
         }
     }
 
@@ -48,6 +53,12 @@ public class DatabaseUtils {
             statement.execute("ALTER SEQUENCE genero_id_seq RESTART");
         }catch (SQLException e){
             System.err.println(e.getMessage());
+        }finally {
+        	try {
+				connection.close();
+			} catch (SQLException e) {
+				System.err.println(e.getMessage());
+			}
         }
     }
 
@@ -70,6 +81,13 @@ public class DatabaseUtils {
         }catch (SQLException e){
             System.err.println(e.getMessage());
         }
+        finally {
+        	try {
+				connection.close();
+			} catch (SQLException e) {
+				System.err.println(e.getMessage());
+			}
+        }
     }
 
     public int getMaxIdSessao(){
@@ -88,6 +106,12 @@ public class DatabaseUtils {
 
         }catch (SQLException e){
             System.err.println(e.getMessage());
+        }finally {
+        	try {
+				connection.close();
+			} catch (SQLException e) {
+				System.err.println(e.getMessage());
+			}
         }
 
         return -1;
@@ -102,6 +126,12 @@ public class DatabaseUtils {
             statement.execute("INSERT INTO FILME VALUES (1), (2), (3)");
         }catch (SQLException e){
             System.err.println(e.getMessage());
+        }finally {
+        	try {
+				connection.close();
+			} catch (SQLException e) {
+				System.err.println(e.getMessage());
+			}
         }
     }
 
@@ -114,6 +144,12 @@ public class DatabaseUtils {
             statement.execute("ALTER SEQUENCE cinema_id_seq RESTART");
         }catch (SQLException e){
             System.err.println(e.getMessage());
+        }finally {
+        	try {
+				connection.close();
+			} catch (SQLException e) {
+				System.err.println(e.getMessage());
+			}
         }
 	}
 
@@ -126,6 +162,12 @@ public class DatabaseUtils {
             statement.execute("ALTER SEQUENCE ator_id_seq RESTART");
         }catch (SQLException e){
             System.err.println(e.getMessage());
+        }finally {
+        	try {
+				connection.close();
+			} catch (SQLException e) {
+				System.err.println(e.getMessage());
+			}
         }
     }
     public void deleteAllDiretores() {
@@ -137,6 +179,12 @@ public class DatabaseUtils {
             statement.execute("ALTER SEQUENCE diretor_id_seq RESTART");
         }catch (SQLException e){
             System.err.println(e.getMessage());
+        }finally {
+        	try {
+				connection.close();
+			} catch (SQLException e) {
+				System.err.println(e.getMessage());
+			}
         }
     }
 
@@ -148,6 +196,12 @@ public class DatabaseUtils {
             statement.execute("ALTER SEQUENCE sala_id_seq RESTART");
         }catch (SQLException e){
             System.err.println(e.getMessage());
+        }finally {
+        	try {
+				connection.close();
+			} catch (SQLException e) {
+				System.err.println(e.getMessage());
+			}
         }
     }
 

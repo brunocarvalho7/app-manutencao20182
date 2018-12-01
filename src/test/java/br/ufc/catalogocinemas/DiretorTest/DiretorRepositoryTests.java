@@ -33,9 +33,9 @@ public class DiretorRepositoryTests {
 
         repository.save(diretor);
 
-        repository.delete(diretor.getId());
+        repository.deleteById(diretor.getId());
 
-        Assert.assertNull(repository.findOne(diretor.getId()));
+        Assert.assertFalse(repository.findById(diretor.getId()).isPresent());
     }
 
     @Test
@@ -44,12 +44,12 @@ public class DiretorRepositoryTests {
 
         repository.save(diretor);
 
-        Assert.assertNotNull(repository.findOne(diretor.getId()));
+        Assert.assertNotNull(repository.findById(diretor.getId()).get());
     }
 
     @Test
     public void erroAobuscarDiretorInexistenteTest(){
-        Assert.assertNull(repository.findOne(987));
+    	Assert.assertFalse(repository.findById(987).isPresent());
     }
 
     @Test
