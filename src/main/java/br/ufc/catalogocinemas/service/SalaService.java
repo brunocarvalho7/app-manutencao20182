@@ -26,7 +26,6 @@ public class SalaService{
         	sRepository.deleteById(id);
         	return salaResponse.get();
         }
-            
         return null;
     }
 

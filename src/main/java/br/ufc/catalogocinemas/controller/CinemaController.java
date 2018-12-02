@@ -1,16 +1,12 @@
 package br.ufc.catalogocinemas.controller;
 
 import br.ufc.catalogocinemas.model.Cinema;
-import br.ufc.catalogocinemas.model.Sala;
 import br.ufc.catalogocinemas.service.CinemaService;
-import br.ufc.catalogocinemas.service.SalaService;
 import br.ufc.catalogocinemas.utils.Constantes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
-import java.util.List;
 
 @Controller
 @RequestMapping("/cinema/")
@@ -79,7 +75,8 @@ public class CinemaController {
 
                     if(cinemaResponse != null) {
                         model.addObject("cinema", cinemaResponse);
-                        model.getModelMap().addAttribute("msg", "Cinema " + cinemaResponse.getNome() + " atualizado com sucesso!!");
+                        model.getModelMap().addAttribute("msg", "Cinema " + cinemaResponse.getNome() + 
+                        		" atualizado com sucesso!!");
                     }
                 }else{
                     model.getModelMap().addAttribute("msg","Informe uma cidade válida!!");

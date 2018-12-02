@@ -26,8 +26,8 @@ public class AdminController {
         ModelAndView model = new ModelAndView("login");
         Admin adminResponse = null;
 
-        if(login != null && login.trim().isEmpty() == false){
-            if(senha != null && senha.trim().isEmpty() == false){
+        if(login != null && !login.trim().isEmpty()){
+            if(senha != null && !senha.trim().isEmpty()){
                 adminResponse = sService.logar(login, senha);
                 httpSession.setAttribute("usuario", adminResponse);
 
@@ -60,9 +60,9 @@ public class AdminController {
         ModelAndView model = new ModelAndView("usuario");
         Boolean response   = false;
 
-        if(login != null && login.trim().isEmpty() == false){
-            if(admin.getLogin() != null && admin.getLogin().isEmpty() == false){
-                if(admin.getSenha() != null && admin.getSenha().isEmpty() == false){
+        if(login != null && !login.trim().isEmpty()){
+            if(admin.getLogin() != null && !admin.getLogin().isEmpty()){
+                if(admin.getSenha() != null && !admin.getSenha().isEmpty()){
                     response = sService.atualizarAdmin(login, admin);
                 }
             }

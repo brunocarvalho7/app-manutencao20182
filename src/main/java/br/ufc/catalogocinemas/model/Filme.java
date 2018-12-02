@@ -60,7 +60,8 @@ public class Filme {
         this.diretores = new ArrayList<>();
     }
 
-    public Filme(String nome, String sinopse, Integer duracao, List<Ator> atores, List<Diretor> diretores, List<Genero> generos) {
+    public Filme(String nome, String sinopse, Integer duracao, List<Ator> atores, 
+    		List<Diretor> diretores, List<Genero> generos) {
         this.nome = nome;
         this.sinopse = sinopse;
         this.duracao = duracao;

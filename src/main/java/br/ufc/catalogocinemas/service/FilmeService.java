@@ -1,7 +1,6 @@
 package br.ufc.catalogocinemas.service;
 
 import br.ufc.catalogocinemas.model.Filme;
-import br.ufc.catalogocinemas.model.Sessao;
 import br.ufc.catalogocinemas.repository.FilmeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

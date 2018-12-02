@@ -18,7 +18,7 @@ public class GeneroService {
     public Genero addGenero(Genero genero){
         return sRepository.save(genero);
     }
-
+    
     public Genero removerGenero(int id){    	
         Optional<Genero> generoResponse = sRepository.findById(id);
 
@@ -26,7 +26,7 @@ public class GeneroService {
         	sRepository.deleteById(id);
         	return generoResponse.get();
         }
-           
+        
         return null;
     }
 

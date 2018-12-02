@@ -61,7 +61,7 @@ public class SessaoController {
     public ModelAndView todosPorCidade(String cidade){
         ModelAndView model = new ModelAndView("sessoes");
 
-        if(cidade != null && cidade.trim().isEmpty() == false){
+        if(cidade != null && !cidade.trim().isEmpty()){
             model.addObject("sessoes", sService.todasPorCidade(cidade));
         }
 
@@ -72,7 +72,7 @@ public class SessaoController {
     public ModelAndView todosPorFilme(@RequestParam("filme") String nomeFilme){
         ModelAndView model = new ModelAndView("sessoes");
 
-        if(nomeFilme != null && nomeFilme.trim().isEmpty() == false){
+        if(nomeFilme != null && !nomeFilme.trim().isEmpty()){
             model.addObject("sessoes", sService.todosPorFilme(nomeFilme));
         }
 
@@ -115,13 +115,14 @@ public class SessaoController {
 
     @RequestMapping(path = "/add", method = RequestMethod.POST)
     public ModelAndView addSessao(@RequestParam Integer filme,@RequestParam Integer sala,
-                                  @RequestParam String horario,@RequestParam String dataInicio,@RequestParam String dataFim) {
+                                  @RequestParam String horario,@RequestParam String dataInicio,
+                                  @RequestParam String dataFim) {
 
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ISO_LOCAL_DATE;
-        DateTimeFormatter TimeFormatter = DateTimeFormatter.ISO_LOCAL_TIME;
+        DateTimeFormatter timeFormatter = DateTimeFormatter.ISO_LOCAL_TIME;
 
         Sessao sessao = new Sessao(filmeService.buscarFilmeId(filme),
-                salaService.buscarSala(sala), LocalTime.parse(horario, TimeFormatter),
+                salaService.buscarSala(sala), LocalTime.parse(horario, timeFormatter),
                 LocalDate.parse(dataInicio, dateTimeFormatter), LocalDate.parse(dataFim, dateTimeFormatter));
 
         ModelAndView model = new ModelAndView("index");

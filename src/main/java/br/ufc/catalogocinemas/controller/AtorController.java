@@ -18,7 +18,7 @@ public class AtorController {
     public ModelAndView addAtor(@ModelAttribute Ator ator){
         ModelAndView model = new ModelAndView("ator");
 
-        if(ator != null && ator.getNome() != null && ator.getNome().trim().isEmpty() == false){
+        if(ator != null && ator.getNome() != null && !ator.getNome().trim().isEmpty()){
             Ator atorResponse = sService.adicionarAtor(ator);
 
             model.addObject("ator", atorResponse);
@@ -58,12 +58,13 @@ public class AtorController {
         ModelAndView model = new ModelAndView("ator");
 
         if(ator != null && ator.getId() != null && ator.getId() > 0){
-            if(ator.getNome() != null && ator.getNome().trim().isEmpty() == false){
+            if(ator.getNome() != null && !ator.getNome().trim().isEmpty()){
                 Ator atorResponse = sService.atualizarAtor(ator);
 
                 if(atorResponse != null) {
                     model.addObject("ator", atorResponse);
-                    model.getModelMap().addAttribute("msg", "Ator " + atorResponse.getNome() + " atualizado com sucesso!!");
+                    model.getModelMap().addAttribute("msg", "Ator " + atorResponse.getNome() + 
+                    	" atualizado com sucesso!!");
                 }
             }
         }else{

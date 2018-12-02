@@ -18,11 +18,12 @@ public class GeneroController {
     public ModelAndView addGenero(@ModelAttribute Genero genero){
         ModelAndView model = new ModelAndView("genero");
 
-        if(genero != null && genero.getDescricao() != null && genero.getDescricao().trim().isEmpty() == false){
+        if(genero != null && genero.getDescricao() != null && !genero.getDescricao().trim().isEmpty()){
             Genero generoResponse = sService.addGenero(genero);
 
             model.addObject("genero", generoResponse);
-            model.getModelMap().addAttribute("msg", "Gênero " + generoResponse.getDescricao() + " adicionado com sucesso!!");
+            model.getModelMap().addAttribute("msg", "Gênero " + generoResponse.getDescricao() + 
+            		" adicionado com sucesso!!");
         }else{
             model.getModelMap().addAttribute("msg", "Erro ao tentar adicionar o gênero!");
         }
@@ -41,7 +42,8 @@ public class GeneroController {
 
             if(generoResponse != null){
                 model.addObject("genero", generoResponse);
-                model.getModelMap().addAttribute("msg", "Gênero " + generoResponse.getDescricao() + " removido com sucesso!!");
+                model.getModelMap().addAttribute("msg", "Gênero " + generoResponse.getDescricao() + 
+                		" removido com sucesso!!");
             }else{
                 model.getModelMap().addAttribute("msg", "Gênero não localizado!!");
             }
@@ -60,12 +62,13 @@ public class GeneroController {
         ModelAndView model = new ModelAndView("genero");
 
         if(genero != null && genero.getId() != null && genero.getId() > 0){
-            if(genero.getDescricao() != null && genero.getDescricao().trim().isEmpty() == false){
+            if(genero.getDescricao() != null && !genero.getDescricao().trim().isEmpty()){
                 Genero generoResponse = sService.atualizarGenero(genero);
 
                 if(generoResponse != null){
                     model.addObject("genero", generoResponse);
-                    model.getModelMap().addAttribute("msg", "Gênero " + generoResponse.getDescricao() + " atualizado com sucesso!!");
+                    model.getModelMap().addAttribute("msg", "Gênero " + generoResponse.getDescricao() + 
+                    		" atualizado com sucesso!!");
                 }
             }
         }else{

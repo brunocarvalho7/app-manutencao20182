@@ -4,7 +4,6 @@ import br.ufc.catalogocinemas.model.Filme;
 import br.ufc.catalogocinemas.service.FilmeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -21,7 +20,7 @@ public class FilmeController {
     public ModelAndView addFilme(Filme filme) {
         ModelAndView model = new ModelAndView("filme");
 
-        if(filme != null && filme.getNome() != null && filme.getNome().trim().isEmpty() == false){
+        if(filme != null && filme.getNome() != null && !filme.getNome().trim().isEmpty()){
             Filme filmeResponse = sService.addFilme(filme);
 
             model.addObject("filme", filmeResponse);
@@ -98,7 +97,7 @@ public class FilmeController {
     public ModelAndView buscarFilmeNome(@RequestParam("nome") String nome) {
         ModelAndView model = new ModelAndView("filme");
 
-        if(nome != null && nome.trim().isEmpty() == false){
+        if(nome != null && !nome.trim().isEmpty()){
             List<Filme> filmesResponse = sService.buscarFilmeNome(nome);
 
             model.addObject("filmes", filmesResponse);

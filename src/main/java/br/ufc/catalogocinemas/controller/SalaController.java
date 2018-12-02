@@ -116,7 +116,7 @@ public class SalaController {
     public ModelAndView buscarSalaNome(@PathVariable String nome) {
         ModelAndView model = new ModelAndView("sala");
 
-        if(nome != null && nome.trim().isEmpty() == false){
+        if(nome != null && !nome.trim().isEmpty()){
             model.addObject("sala", sService.buscarSalaNome(nome));
         }else{
             model.getModelMap().addAttribute("msg","Informe um nome válido!!");

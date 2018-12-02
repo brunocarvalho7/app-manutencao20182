@@ -55,7 +55,7 @@ public class SessaoService {
     }
 
     public List<Sessao> getSessoesPorSala(int id){
-        return repository.findBySala_id(id);
+        return repository.findBySalaId(id);
     }
 
 }

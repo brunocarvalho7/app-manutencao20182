@@ -1,7 +1,5 @@
 package br.ufc.catalogocinemas.model;
 
-import org.springframework.context.annotation.Bean;
-
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import java.util.ArrayList;

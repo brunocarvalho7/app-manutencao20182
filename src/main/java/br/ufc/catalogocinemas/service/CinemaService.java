@@ -64,9 +64,8 @@ public class CinemaService {
 
             if (cinemaResponse != null && salaResponse != null) {
                 return true;
-            } else {
-                return false;
             }
+            
         }catch(Exception e){
             System.out.println(e.getMessage());
         }

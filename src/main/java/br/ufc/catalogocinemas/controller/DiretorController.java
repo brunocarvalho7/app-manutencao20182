@@ -18,11 +18,12 @@ public class DiretorController {
     public ModelAndView addDiretor(@ModelAttribute Diretor diretor){
         ModelAndView model = new ModelAndView("diretor");
 
-        if(diretor != null && diretor.getNome() != null && diretor.getNome().trim().isEmpty() == false){
+        if(diretor != null && diretor.getNome() != null && !diretor.getNome().trim().isEmpty()){
             Diretor diretorResponse = sService.adicionarDiretor(diretor);
 
             model.addObject("diretor", diretorResponse);
-            model.getModelMap().addAttribute("msg", "Diretor " + diretorResponse.getNome() + " adicionado com sucesso!!");
+            model.getModelMap().addAttribute("msg", "Diretor " + diretorResponse.getNome() + 
+            		" adicionado com sucesso!!");
         }else{
             model.getModelMap().addAttribute("msg", "Erro ao tentar adicionar o diretor!");
         }
@@ -40,7 +41,8 @@ public class DiretorController {
 
             if(diretorResponse != null){
                 model.addObject("diretor", diretorResponse);
-                model.getModelMap().addAttribute("msg", "Diretor " + diretorResponse.getNome() + " removido com sucesso!!");
+                model.getModelMap().addAttribute("msg", "Diretor " + diretorResponse.getNome() + 
+                		" removido com sucesso!!");
             }else{
                 model.getModelMap().addAttribute("msg", "Diretor não localizado!!");
             }
@@ -58,12 +60,13 @@ public class DiretorController {
         ModelAndView model = new ModelAndView("diretor");
 
         if(diretor != null && diretor.getId() != null && diretor.getId() > 0){
-            if(diretor.getNome() != null && diretor.getNome().trim().isEmpty() == false){
+            if(diretor.getNome() != null && !diretor.getNome().trim().isEmpty()){
                 Diretor diretorResponse = sService.atualizarDiretor(diretor);
 
                 if(diretorResponse != null){
                     model.addObject("diretor", diretorResponse);
-                    model.getModelMap().addAttribute("msg", "Diretor " + diretorResponse.getNome() + " atualizado com sucesso!!");
+                    model.getModelMap().addAttribute("msg", "Diretor " + diretorResponse.getNome() + 
+                    		" atualizado com sucesso!!");
                 }
             }
         }else{

@@ -11,10 +11,12 @@ public class Constantes {
     public static final String MSG_ERRO_ATUALIZAR_SESSAO = "Ocorreu um erro ao tentar atualizar a sessão!!";
     public static final String MSG_SUCESSO_ATUALIZAR_SESSAO = "Sessão atualizada com sucesso!!";
 
-    public static final String MSG_ERRO_VINCULAR_SALA_CINEMA ="Ocorreu um erro ao tentar adicionar a sala ao cinema desejado!";
+    public static final String MSG_ERRO_VINCULAR_SALA_CINEMA ="Ocorreu um erro ao tentar adicionar a sala ao cinema "
+    		+ "desejado!";
     public static final String MSG_SUCESSO_VINCULAR_SALA_CINEMA ="Sala adicionada com sucesso ao cinema";
 
-    public static final String MSG_ERRO_DESVINCULAR_SALA_CINEMA ="Ocorreu um erro ao tentar remover a sala do cinema desejado!";
+    public static final String MSG_ERRO_DESVINCULAR_SALA_CINEMA ="Ocorreu um erro ao tentar remover a sala do cinema "
+    		+ "desejado!";
     public static final String MSG_SUCESSO_DESVINCULAR_SALA_CINEMA ="Sala removida com sucesso do cinema";
 
 }
