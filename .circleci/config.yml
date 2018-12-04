@@ -24,7 +24,7 @@ jobs:
                 - v1-dependencies
         - run: mvn dependency:go-offline
         - run: 
-            command: mvn test sonar:sonar -Dsonar.projectKey=$SONAR_PROJECT_KEY -Dsonar.organization=$SONAR_ORGANIZATION -Dsonar.host.url=$SONAR_HOST -Dsonar.login=$SONAR_LOGIN
+            command: mvn verify sonar:sonar -Dsonar.projectKey=$SONAR_PROJECT_KEY -Dsonar.organization=$SONAR_ORGANIZATION -Dsonar.host.url=$SONAR_HOST -Dsonar.login=$SONAR_LOGIN
         - run:
             command: HEROKU_API_KEY="$HEROKU_API_KEY" mvn heroku:deploy-war 
         - run:
