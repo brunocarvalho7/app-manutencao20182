@@ -1,0 +1,28 @@
+{
+  "Services": {
+    "db": {
+      "Env": [
+        "POSTGRES_USER=postgres",
+        "POSTGRES_PASSWORD=postgres",
+        "POSTGRES_DB=catalogo-cinemas"
+      ],
+      "Image": "postgres@sha256:3c848f2cc160bb2ddf68e5feab81c35c6754e2f0c886708b9e8a204697970818",
+      "Networks": [
+        "the_net"
+      ]
+    },
+    "web": {
+      "Image": "brunocarvalho287/manutencao-20182@sha256:04fb91dfe361288c6720edce5b6275295eaf6a57808716764ce9fbfb15e47382",
+      "Networks": [
+        "the_net"
+      ],
+      "Ports": [
+        {
+          "Port": 8080,
+          "Protocol": "tcp"
+        }
+      ]
+    }
+  },
+  "Version": "0.1"
+}

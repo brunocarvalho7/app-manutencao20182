@@ -1,0 +1,5 @@
+rm -R '/home/bruno/env-dev/Tomcat/apache-tomcat-8.5.35/webapps/catalogo-cinemas'
+rm '/home/bruno/env-dev/Tomcat/apache-tomcat-8.5.35/webapps/catalogo-cinemas.war' 
+cp '/home/bruno/env-dev/Java/Manutencao/app-manutencao20182/target/catalogo-cinemas.war' '/home/bruno/env-dev/Tomcat/apache-tomcat-8.5.35/webapps'
+bash '/home/bruno/env-dev/Tomcat/apache-tomcat-8.5.35/bin/shutdown.sh' 
+bash '/home/bruno/env-dev/Tomcat/apache-tomcat-8.5.35/bin/startup.sh' 

@@ -1,0 +1,35 @@
+version: '2'
+services:
+    app-web:
+      build: ./docker/web
+      ports:
+        - "8081:8080"
+      links:
+        - app-db
+      networks:
+        - testAppnet        
+
+    app-db:
+      build: ./docker/db
+      expose:
+        - "5432"
+      volumes_from:
+        - app-db-data
+      networks:
+        - testAppnet        
+
+    app-db-data:
+      image: cogniteev/echo
+      command: echo 'Data Container for PostgreSQL'
+      volumes:
+        - /var/lib/postgresql/data
+      networks:
+        - testAppnet        
+
+networks:
+    testAppnet:
+      driver: bridge
+      ipam:
+        driver: default
+        config:
+          - subnet: 172.28.0.0/16

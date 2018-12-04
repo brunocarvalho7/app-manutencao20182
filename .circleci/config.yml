@@ -26,6 +26,8 @@ jobs:
         - run: 
             command: mvn package sonar:sonar -Dsonar.projectKey=$SONAR_PROJECT_KEY -Dsonar.organization=$SONAR_ORGANIZATION -Dsonar.host.url=$SONAR_HOST -Dsonar.login=$SONAR_LOGIN
             #command: HEROKU_API_KEY="$HEROKU_API_KEY" mvn heroku:deploy-war 
+        - run:
+            command: bash SonarCloudOutput.sh
         - store_test_results: 
             path: target/surefire-reports
         - save_cache:
