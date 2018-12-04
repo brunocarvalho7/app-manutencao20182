@@ -26,7 +26,9 @@ jobs:
         - run: 
             command: mvn test sonar:sonar -Dsonar.projectKey=$SONAR_PROJECT_KEY -Dsonar.organization=$SONAR_ORGANIZATION -Dsonar.host.url=$SONAR_HOST -Dsonar.login=$SONAR_LOGIN
         - run:
-            command: HEROKU_API_KEY="$HEROKU_API_KEY" mvn heroku:deploy-war 
+            command: HEROKU_API_KEY="$HEROKU_API_KEY" mvn heroku:deploy-war
+        - run:
+            command: mvn verify 
         - run:
             command: bash SonarCloudOutput.sh
         - store_test_results: 
