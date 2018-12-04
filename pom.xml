@@ -85,7 +85,7 @@
 				<executions>
 					<execution>
 						<id>validate</id>
-						<phase>deploy</phase>
+						<phase>validate</phase>
 						<configuration>
 							<encoding>UTF-8</encoding>
 							<consoleOutput>true</consoleOutput>
