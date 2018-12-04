@@ -35,7 +35,9 @@ jobs:
             paths: ~/.m2
             key: v1-dependencies-{{checksum "pom.xml"}}
         - store_artifacts:
-            path: target/catalogo-cinemas.war      
+            path: target/ROOT.war
+        - store_artifacts:
+            path: target/jmeter/reports    
 workflows:
   version: 2
   build-and-deploy:
