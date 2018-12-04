@@ -1,6 +1,6 @@
 steps:
-- name: 'docker/compose:1.19.0'
+- name: 'gcr.io/$PROJECT_ID/docker-compose'
   args: ['up', '-d']
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['tag', 'manutencao:latest', 'gcr.io/$PROJECT_ID/$REPO_NAME:$COMMIT_SHA']
+  args: ['tag', 'brunocarvalho287/manutencao-20182:latest', 'gcr.io/$PROJECT_ID/$REPO_NAME:$COMMIT_SHA']
 images: ['gcr.io/$PROJECT_ID/$REPO_NAME:$COMMIT_SHA']
