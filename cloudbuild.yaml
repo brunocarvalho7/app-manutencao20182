@@ -4,5 +4,5 @@ steps:
 - name: 'gcr.io/cloud-builders/docker'
   args: ['tag', 'brunocarvalho287/manutencao-20182:latest', 'gcr.io/$PROJECT_ID/$REPO_NAME:$COMMIT_SHA']
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['images']
+  args: ['ps', '-a']
 images: ['gcr.io/$PROJECT_ID/$REPO_NAME:$COMMIT_SHA']
